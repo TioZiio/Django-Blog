@@ -14,3 +14,7 @@ Comandos importantes Locais:
 3. makemigrations - Atualiza as modificações nos models;
 4. migrate - Aplica novas Atualizações;
 
+Comando para gerar SECRET_KEY:
+~~~python
+python3 -c "import string as s;from secrets import SystemRandom as SR;print(''.join(SR().choices(s.ascii_letters + s.digits + s.punctuation, k=64)));"
+~~~
