@@ -1,0 +1,20 @@
+# Determina os serviços nos conteiners
+services:
+  db:
+    container_name: blogdb
+    image: postgres
+    env_file:
+      - dotenv_files/.env
+
+  blogapp:
+    container_name: djangoblog
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/blogapp
+    env_file:
+      - dotenv_files/.env
+    ports:
+      - "8000-8000"
+    depends_on:
+      - db
