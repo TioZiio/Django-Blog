@@ -31,6 +31,7 @@ project/local_settings.py
 
 # Diretórios Locais
 .local/
+Installation/
 
 	# Diretórios
 
