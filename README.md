@@ -11,10 +11,9 @@ Informações importantes:
 
 Comandos importantes Docker
 1. Configurar o docker como sudo na máquina local:
-    # Verifica se o grupo existe:
-    5.1. cat /etc/group | grep docker
-    5.2. sudo usermod -aG docker $USER
-    5.3. Reinicie o Usuário
+    1.1 cat /etc/group | grep docker - Verifica se o grupo existe:
+    1.2. sudo usermod -aG docker $USER
+    1.3. Reinicie o Usuário
 2. Lista os conteiners
     2.1 docker ps - apenas ativos
     2.2 docker ps -a - todos os conteiners
