@@ -13,11 +13,48 @@ Passo a Passo para configurar o Django dentro do Docker.
 2. Configurar o docker-compose.yml:
     1. As configurações são bem pessoias, mas o meu ficou assim:
        [docker-compose.yml](https://github.com/TioZiio/Django-Blog/blob/main/docker-compose.yml)
-    2. Informações importantes:
-        Imagem do PostgreSQL e do Docker devem ser pegos no hub.docker:  
-            [Docker Hub](https://hub.docker.com/)
+    2. Imagem do PostgreSQL deve ser pego no hub.docker:  
+            [Docker Hub](https://hub.docker.com/_/postgres)
     3. Volumes devem ser bem definidos, observe sobre permissões de pastas.  
         1. Existem 3 maneiras principais de volumes:  
             > Volomes gerenciados pelo Docker;  
             > Montagem vinculada;  
             > Volumes anônimos;  
+    4. Não é recomendado inserir as variáveis de controle direto no docker-compose.  
+        > OBs.: Buscar resolver o problema quando se usa o .env
+
+3. Configurar o Dockerfile: 
+    1. As configurações são bem pessoias, mas o meu ficou assim:
+       [docker-compose.yml](https://github.com/TioZiio/Django-Blog/blob/main/Dockerfile)
+    2. Imagem do PostgreSQL deve ser pego no hub.docker:  
+            [Docker Hub](https://hub.docker.com/_/python)
+    3. Fique atento as permissões e locais das pastas, para não gerar conflitos ou erros.  
+    4. Criar um usuário sem home e sem senha, apenas para evitar o uso do root.  
+
+4. Criando o Docker:  
+    1. docker compose build  
+
+5. Configurar o Django:
+    1. Criar o projeto com:  
+        docker compose run --rm app sh -c "django-admin startproject nome_projeto ."
+    2. Configurar o settings.py:  
+        1. Importe a biblioteca 'os'.  
+        2. Crie uma variável para o caminho dos arquivos Statics:
+            > DATA_DIR = BASE_DIR.parent / 'data' / 'web'  
+        3. Localize o DATABASES e atualize as informações:  
+            > 'default': {  
+            >     'ENGINE': 'django.db.backends.postgresql',  
+            >     'NAME': os.environ.get("DB_NAME"),  
+            >     'HOST': os.environ.get("DB_HOST"),  
+            >     'USER': os.environ.get("DB_USER"),  
+            >     'PASSWORD': os.environ.get("DB_PASSWORD"),  
+            > }  
+        4. Todas as variáveis foram criadas no docker-compose.yml  
+        5. Localize o STATIC_URL:  
+            > STATIC_URL = '/static/'  
+            > STATIC_ROOT = DATA_DIR / 'static'  
+            > MEDIA_URL = '/media/'  
+            > MEDIA_ROOT = DATA_DIR / 'media'  
+
+6. Inicialize o Docker:  
+    1. docker compose up
