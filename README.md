@@ -48,8 +48,9 @@ Passo a Passo para configurar o Django dentro do Docker.
             >     'HOST': os.environ.get("DB_HOST"),  
             >     'USER': os.environ.get("DB_USER"),  
             >     'PASSWORD': os.environ.get("DB_PASSWORD"),  
-            > }  
-        4. Todas as variáveis foram criadas no docker-compose.yml  
+            > }
+            >  
+            > OBs.: Todas as variáveis foram criadas no docker-compose.yml  
         5. Localize o STATIC_URL:  
             > STATIC_URL = '/static/'  
             > STATIC_ROOT = DATA_DIR / 'static'  
