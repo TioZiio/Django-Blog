@@ -23,5 +23,8 @@ env
 logs
 stats
 Dockerfile
+vimrc
+*.md
+Installation/
 __localcode/
 
