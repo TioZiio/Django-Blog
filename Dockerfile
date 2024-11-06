@@ -14,8 +14,13 @@ RUN python -m venv /py && \
     rm -rf /tmp && \
     apk del .tmp-build-deps && \
     adduser --disabled-password --no-create-home tioziio
+RUN mkdir -p /data/web/static && \
+    chown -R tioziio:tioziio /data/web/static && \
+    mkdir -p /data/web/media && \
+    chown -R tioziio:tioziio /data/web/media
 
 ENV PATH="/py/bin:$PATH"
 
 USER tioziio 
 
+CMD ["sh","-c","echo testando > tes.txt"]

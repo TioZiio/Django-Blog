@@ -22,9 +22,9 @@ docs
 env
 logs
 stats
+__localcode/
 Dockerfile
 vimrc
 *.md
 Installation/
-__localcode/
-
+*.env-example
