@@ -1,26 +1,23 @@
-#Projeto Blog
+# Projeto Blog
 
 Este projeto esta sendo desenvolvido junto ao curso da Udemy.
 Curso de Python 3 do básico ao avançado.
 
-Informações importantes:
+Passo a Passo para configurar o Django dentro do Docker.
 
-1. Pasta migrations do App - Registra e aplica configurações do models (BD);
-2. Dockerfile contrói a imagem (linux);
-3. Docker-compose manipula as configurações dos conteiners;
+1. Configurar o requirements.txt:
+    1. É opcional quais bibliotecas e versões, mas vou usar:
+        Django>=5.1,<5.2
+        psycopg2-binary>=2.9,<2.10
 
-Comandos importantes Docker
-1. Configurar o docker como sudo na máquina local:
-    1.1 cat /etc/group | grep docker - Verifica se o grupo existe:
-    1.2. sudo usermod -aG docker $USER
-    1.3. Reinicie o Usuário
-2. Lista os conteiners
-    2.1 docker ps - apenas ativos
-    2.2 docker ps -a - todos os conteiners
-3. Cria o conteneiner com o arquivo docker-compose.yml
-    3.1 docker compose up -d
-
-Comando para gerar SECRET_KEY:
-~~~python
-python3 -c "import string as s;from secrets import SystemRandom as SR;print(''.join(SR().choices(s.ascii_letters + s.digits + s.punctuation, k=64)));"
-~~~
+2. Configurar o docker-compose.yml:
+    1. As configurações são bem pessoias, mas o meu ficou assim:
+       [docker-compose.yml](https://github.com/TioZiio/Django-Blog/blob/main/docker-compose.yml)
+    2. Informações importantes:
+        Imagem do PostgreSQL e do Docker devem ser pegos no hub.docker:
+            [Docker Hub](https://hub.docker.com/)
+    3. Volumes devem ser bem definidos, observe sobre permissões de pastas.
+            Existem 3 maneiras principais de volumes: 
+            > Volomes gerenciados pelo Docker;
+            > Montagem vinculada;
+            > Volumes anônimos;
