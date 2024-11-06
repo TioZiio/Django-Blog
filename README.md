@@ -14,10 +14,10 @@ Passo a Passo para configurar o Django dentro do Docker.
     1. As configurações são bem pessoias, mas o meu ficou assim:
        [docker-compose.yml](https://github.com/TioZiio/Django-Blog/blob/main/docker-compose.yml)
     2. Imagem do PostgreSQL deve ser pego no hub.docker:  
-            [Docker Hub](https://hub.docker.com/_/postgres)
+            [Docker Hub Postgres](https://hub.docker.com/_/postgres)
     3. Volumes devem ser bem definidos, observe sobre permissões de pastas.  
         1. Existem 3 maneiras principais de volumes:  
-            > Volomes gerenciados pelo Docker;  
+            > Volumes gerenciados pelo Docker;  
             > Montagem vinculada;  
             > Volumes anônimos;  
     4. Não é recomendado inserir as variáveis de controle direto no docker-compose.  
@@ -27,7 +27,7 @@ Passo a Passo para configurar o Django dentro do Docker.
     1. As configurações são bem pessoias, mas o meu ficou assim:
        [docker-compose.yml](https://github.com/TioZiio/Django-Blog/blob/main/Dockerfile)
     2. Imagem do PostgreSQL deve ser pego no hub.docker:  
-            [Docker Hub](https://hub.docker.com/_/python)
+            [Docker Hub Python](https://hub.docker.com/_/python)
     3. Fique atento as permissões e locais das pastas, para não gerar conflitos ou erros.  
     4. Criar um usuário sem home e sem senha, apenas para evitar o uso do root.  
 
@@ -57,4 +57,8 @@ Passo a Passo para configurar o Django dentro do Docker.
             > MEDIA_ROOT = DATA_DIR / 'media'  
 
 6. Inicialize o Docker:  
-    1. docker compose up
+    1. Criar um super usuário no Docker para ter acesso no grupo Admin:  
+        1. docker compose run --rm nome_projeto sh -c "python manage.py createsuperuser"  
+    2. Rodar o Docker:
+        1. docker compose up  
+    3. No navegador: localhost:8000
