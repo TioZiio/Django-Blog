@@ -22,6 +22,9 @@ Passo a Passo para configurar o Django dentro do Docker.
             > Volumes anônimos;  
     4. Não é recomendado inserir as variáveis de controle direto no docker-compose.  
         > OBs.: Buscar resolver o problema quando se usa o .env
+        1. Problema resolvido!!, apenas carregar o arquivo dotenv no settings.py do app:
+            > from dotenv import load_dotenv  
+            > load_dotenv(BASE_DIR.parent / 'dotenv_files' / '.django.env', override=True)  
 
 3. Configurar o Dockerfile: 
     1. As configurações são bem pessoias, mas o meu ficou assim:
