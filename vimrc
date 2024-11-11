@@ -3,11 +3,7 @@ set nocompatible
 filetype on
 filetype plugin on
 filetype indent on
-" syntax on
-" packadd! po
-" set spelllang=pt,en
 set nospell
-set viminfo=
 
 " Indentation 
 set tabstop=4 
