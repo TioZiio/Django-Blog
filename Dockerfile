@@ -17,7 +17,8 @@ RUN python -m venv /py && \
 RUN mkdir -p /data/web/static && \
     chown -R tioziio:tioziio /data/web/static && \
     mkdir -p /data/web/media && \
-    chown -R tioziio:tioziio /data/web/media
+    chown -R tioziio:tioziio /data/web/media && \
+    chown -R tioziio:tioziio /py/lib/python3.12/site-packages
 
 ENV PATH="/py/bin:$PATH"
 
