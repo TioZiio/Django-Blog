@@ -23,4 +23,4 @@ ENV PATH="/py/bin:$PATH"
 
 USER tioziio 
 
-CMD ["sh","-c","echo testando > tes.txt"]
+CMD ["sh","-c","echo testando > /app/tes.txt"]
