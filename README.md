@@ -7,8 +7,12 @@ Passo a Passo para configurar o Django dentro do Docker.
 
 1. Configurar o requirements.txt:
     1. É opcional quais bibliotecas e versões, mas vou usar:  
-        Django>=5.1,<5.2  
-        psycopg2-binary>=2.9,<2.10  
+        Django>=5.1,<5.2
+        psycopg2-binary>=2.9,<2.10
+        django-summernote>=0.8.20.0,<0.8.21
+        django-axes>=7.0.0,<7.1
+        python-dotenv>=1.0,<1.1
+        pillow>=11.0,<=11.1
 
 2. Configurar o docker-compose.yml:
     1. As configurações são bem pessoias, mas o meu ficou assim:
@@ -21,8 +25,6 @@ Passo a Passo para configurar o Django dentro do Docker.
             > Montagem vinculada;  
             > Volumes anônimos;  
     4. Não é recomendado inserir as variáveis de controle direto no docker-compose.  
-        > OBs.: Buscar resolver o problema quando se usa o .env
-        1. Problema resolvido!!, apenas carregar o arquivo dotenv no settings.py do app:
             > from dotenv import load_dotenv  
             > load_dotenv(BASE_DIR.parent / 'dotenv_files' / '.django.env', override=True)  
 
@@ -59,10 +61,13 @@ Passo a Passo para configurar o Django dentro do Docker.
             > STATIC_ROOT = DATA_DIR / 'static'  
             > MEDIA_URL = '/media/'  
             > MEDIA_ROOT = DATA_DIR / 'media'  
+        6. Configurar os models e views de acordo com a preferência.   
+        7. Criar o HTML,CSS,JS.  
+        ### OBS: esta etapa e totalmente pessoal, não será detalhada.  
 
 6. Inicialize o Docker:  
     1. Criar um super usuário no Docker para ter acesso no grupo Admin:  
         1. docker compose run --rm nome_projeto sh -c "python manage.py createsuperuser"  
     2. Rodar o Docker:
-        1. docker compose up  
+        1. docker compose up --build  
     3. No navegador: localhost:8000
